@@ -9,11 +9,15 @@ module.exports = {
             autoIncrement: true,
             allowNull: false,
         },
-        ra: {
+        ar: {
             type: Sequelize.INTEGER,
             allowNull: false,
         },
         name: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        email: {
             type: Sequelize.STRING,
             allowNull: false,
         },
