@@ -1,4 +1,4 @@
-const { storeService, destroyService, updateService } = require('../services/studentService');
+const { storeService, destroyService, updateService, selectAllService } = require('../services/studentService');
 
 module.exports = {
     async sotreController(req, res) {
@@ -32,6 +32,16 @@ module.exports = {
             const {name, email} = req.body
 
             const result = await updateService(id,{ name, email });
+
+            return res.status(200).json({ data: result});
+        } catch (err) {
+            return res.status(500).json({ message: err.message});
+        }
+    },
+
+    async selectAllController(req,res){
+        try{
+            const result = await selectAllService();
 
             return res.status(200).json({ data: result});
         } catch (err) {
