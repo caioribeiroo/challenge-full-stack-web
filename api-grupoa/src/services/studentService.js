@@ -1,11 +1,25 @@
-const Studet = require('../models/Student');
+const Student = require('../models/Student');
 
 module.exports = {
-    async storeSerice(body) {
+    async storeService(body) {
         try {
-            await Studet.create(body);
+            await Student.create(body);
 
             return 'Aluno cadastrado com sucesso.';
+        } catch (err) {
+            throw new Error(err.message);
+        }
+    },
+
+    async destroyService(idStudent) {
+        try {
+            const student = await Student.findOne({ where:{ id: idStudent } });
+
+            if (!student) {
+                return 'Registro inexistente.';
+            }
+            await Student.destroy({where:{id: idStudent,},});
+            return 'Aluno excluido com sucesso.';
         } catch (err) {
             throw new Error(err.message);
         }
